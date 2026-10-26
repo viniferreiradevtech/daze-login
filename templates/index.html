@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Acesse sua conta Daze">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Daze login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <main class="container">
+        <form id="login-form" method="post" action="/api/login" novalidate>
+            <h1>Login Daze</h1>
+
+            <div class="field">
+                <div class="input-box">
+                    <label for="usuario" class="sr-only">Usuário</label>
+                    <input
+                        id="usuario"
+                        name="usuario"
+                        type="text"
+                        placeholder="Usuário"
+                        autocomplete="username"
+                        aria-describedby="usuario-erro"
+                        required>
+                    <i class="bx bxs-user" aria-hidden="true"></i>
+                </div>
+                <p class="error-message" id="usuario-erro" role="alert"></p>
+            </div>
+
+            <div class="field">
+                <div class="input-box">
+                    <label for="senha" class="sr-only">Senha</label>
+                    <input
+                        id="senha"
+                        name="senha"
+                        type="password"
+                        placeholder="Senha"
+                        autocomplete="current-password"
+                        aria-describedby="senha-erro"
+                        required>
+                    <button type="button" class="toggle-password" aria-label="Mostrar senha" aria-pressed="false">
+                        <i class="bx bx-show" aria-hidden="true"></i>
+                    </button>
+                    <i class="bx bxs-lock-alt" aria-hidden="true"></i>
+                </div>
+                <p class="error-message" id="senha-erro" role="alert"></p>
+            </div>
+
+            <div class="remember-forgot">
+                <label>
+                    <input type="checkbox" id="lembrar">
+                    Lembrar usuário
+                </label>
+                <a href="#">Esqueci a senha</a>
+            </div>
+
+            <button type="submit" class="login">
+                <span class="login-text">Login</span>
+                <span class="spinner" aria-hidden="true"></span>
+            </button>
+
+            <p class="form-status" role="status" aria-live="polite"></p>
+
+            <div class="register-link">
+                <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* ---------- Variáveis ---------- */
+:root {
+    --cor-texto: #fff;
+    --cor-borda: rgba(255, 255, 255, .2);
+    --cor-placeholder: #c5c5c5;
+    --cor-erro: #ff6b6b;
+    --cor-botao-texto: #333;
+    --raio-card: 10px;
+    --raio-campo: 40px;
+    --transicao: .3s ease;
+}
+
+/* ---------- Reset ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ---------- Layout base ---------- */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 16px;
+    background-color: #1a1a2e;
+    background-image: url('./img/planodefundo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container {
+    width: min(420px, 100%);
+    background-color: transparent;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--cor-borda);
+    border-radius: var(--raio-card);
+    color: var(--cor-texto);
+    padding: 30px 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.container h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+/* ---------- Campos ---------- */
+.field {
+    position: relative;
+    margin: 30px 0;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 2px solid var(--cor-borda);
+    border-radius: var(--raio-campo);
+    outline: none;
+    font-size: 16px;
+    color: var(--cor-texto);
+    padding: 20px 80px 20px 20px;
+    transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+
+.input-box input::placeholder {
+    color: var(--cor-placeholder);
+}
+
+.input-box input:focus-visible {
+    border-color: #fff;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .2);
+}
+
+/* Evita o fundo branco/azul do preenchimento automático do navegador */
+.input-box input:-webkit-autofill {
+    -webkit-text-fill-color: #fff;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    pointer-events: none;
+}
+
+/* Botão de mostrar/ocultar senha */
+.toggle-password {
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    color: inherit;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.toggle-password i {
+    position: static;
+    transform: none;
+}
+
+.toggle-password:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* ---------- Erros ---------- */
+.error-message {
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--cor-erro);
+    text-shadow: 0 0 4px rgba(0, 0, 0, .8);
+}
+
+.field.invalid .input-box input {
+    border-color: var(--cor-erro);
+}
+
+/* ---------- Lembrar / Esqueci ---------- */
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 10px 20px;
+    font-size: 14px;
+}
+
+.remember-forgot label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.remember-forgot label input {
+    accent-color: #fff;
+}
+
+.remember-forgot a {
+    text-decoration: none;
+    color: var(--cor-texto);
+}
+
+.remember-forgot a:hover,
+.remember-forgot a:focus-visible {
+    text-decoration: underline;
+}
+
+/* ---------- Botão ---------- */
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 55px;
+    background-color: #fff;
+    border: 2px solid transparent;
+    border-radius: var(--raio-campo);
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--cor-botao-texto);
+    font-weight: 700;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    transition: .5s;
+}
+
+.login:hover:not(:disabled) {
+    background-color: transparent;
+    border: 2px solid var(--cor-borda);
+    color: var(--cor-texto);
+}
+
+.login:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, .6);
+    outline-offset: 3px;
+}
+
+.login:disabled {
+    opacity: .7;
+    cursor: not-allowed;
+}
+
+/* Spinner de carregamento */
+.spinner {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: girar .7s linear infinite;
+}
+
+.login.loading .spinner {
+    display: block;
+}
+
+@keyframes girar {
+    to { transform: rotate(360deg); }
+}
+
+/* ---------- Mensagem geral do formulário ---------- */
+.form-status {
+    min-height: 20px;
+    margin-top: 12px;
+    font-size: 14px;
+    text-align: center;
+    text-shadow: 0 0 4px rgba(0, 0, 0, .8);
+}
+
+.form-status.erro { color: var(--cor-erro); }
+.form-status.sucesso { color: #7dffa1; }
+
+/* ---------- Link de cadastro ---------- */
+.register-link {
+    font-size: 14px;
+    text-align: center;
+    margin: 10px 0 15px;
+}
+
+.register-link a {
+    text-decoration: none;
+    color: var(--cor-texto);
+    font-weight: 500;
+}
+
+.register-link a:hover,
+.register-link a:focus-visible {
+    text-decoration: underline;
+}
+
+/* ---------- Utilitários ---------- */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 480px) {
+    .container {
+        padding: 24px 20px;
+    }
+
+    .container h1 {
+        font-size: 30px;
+    }
+}
+
+/* ---------- Acessibilidade: movimento reduzido ---------- */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation-duration: .01ms !important;
+    }
+}
